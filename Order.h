@@ -12,7 +12,24 @@ public:
 	~Order();
 
 	// Check if input order is valid
-	static bool is_valid(string order);
+	static bool IsValid(string order);
+
+	// Getter - type
+	string getType();
+	// Setter - type
+	void setType(string type);
+	// Getter - side
+	string getSide();
+	// Setter - side
+	void setSide(string side);
+	// Getter - price
+	int getPrice();
+	// Setter - price
+	void setPrice(int price);
+	// Getter - quantity
+	int getQuantity();
+	// Setter - quantity
+	void setQuantity(int qty);
 
 private:
 	// Supported types: "limit", "market"
