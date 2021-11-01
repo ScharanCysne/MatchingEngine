@@ -10,25 +10,27 @@ using namespace std;
 
 int main()
 {
-    // Initialize engine
-    std::cout << "START - Matching Engine\n";
-    // Matching Engine
+    // Start Engine
+    std::cout << "START - Matching Engine" << endl;
+    // Initialize Matching Engine
     Engine engine;
     // User input order
     string order_str;
     
-    cout << "Order: ";
+    cout << endl << "Order: ";
     getline(cin, order_str);
 
-    // Receive orders while 
-    while (order_str.compare(EXIT_CODE) != 0) {
+    // Receive orders until exit code "exit" 
+    while (order_str != EXIT_CODE) {
         if (Order::IsValid(order_str)) {
             Order order(order_str);
-            engine.Receive(order);
+            engine.Execute(order);
         }
-
+        // Request new order from user
         cout << "Order: ";
         getline(cin, order_str);
     }
+    // End Engine
+    std::cout << endl << "END - Matching Engine" << endl;
 }
 

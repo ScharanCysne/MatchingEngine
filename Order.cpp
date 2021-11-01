@@ -33,7 +33,11 @@ bool Order::IsValid(string order) {
 
     vector<string> arr = split(order);
     
-    if (arr[0] != "limit" && arr[0] != "market") {
+    if ((arr[0] == "market" && arr.size() != 3) || (arr[0] == "limit" && arr.size() != 4)) {
+        cout << "Invalid parameters!" << endl;
+        return false;
+    }
+    else if (arr[0] != "limit" && arr[0] != "market") {
         cout << "Invalid Order Type!" << endl;
         return false;
     }
@@ -57,7 +61,6 @@ bool Order::IsValid(string order) {
             return false;
         }
     }
-    
     return true;
 }
 
