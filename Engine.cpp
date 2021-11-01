@@ -81,13 +81,18 @@ void Engine::MatchMarketOrder(Order &order) {
 	
 	// If Match occured, print Trade
 	if (result) {
-		// For all possible trade prices, find maximum (given by the higher limit order)
-		int max_price = 0;
-		for (auto& price : price_traded)
-			if (price > max_price)
-				max_price = price;
+		// For all possible trade prices, find maximum (sell) or minimum (buy)
+		int trade_price = price_traded[0];
+		if(order.getSide() == "buy")
+			for (auto& price : price_traded)
+				if (price > trade_price)
+					trade_price = price;
+		if (order.getSide() == "sell")
+			for (auto& price : price_traded)
+				if (price < trade_price)
+					trade_price = price;
 
-		cout << "Trade, price: " << max_price << ", qty: " << quantity_traded << endl;
+		cout << "Trade, price: " << trade_price << ", qty: " << quantity_traded << endl;
 	}
 }
 
